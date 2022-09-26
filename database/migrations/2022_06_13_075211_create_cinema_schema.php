@@ -38,6 +38,44 @@ class CreateCinemaSchema extends Migration
     public function up()
     {
         throw new \Exception('implement in coding task 4, you can ignore this exception if you are just running the initial migrations.');
+
+        Schema::create('cinema', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->string('address_line1')->nullable();
+            $table->string('address_line2')->nullable();
+            $table->string('street')->nullable();
+            $table->string('city')->nullable();
+            $table->string('postcode')->nullable();
+            $table->string('county')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('no_of_seats')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('movie', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('cinema_id')->nullable();
+            $table->foreign('cinema_id')->references('id')->on('cinema')->cascadeOnDelete();
+            $table->string('name')->nullable();           
+            $table->timestamps();
+        });
+
+        Schema::create('movie_shows', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('movie_id')->nullable();
+            $table->foreign('movie_id')->references('id')->on('movie')->cascadeOnDelete();
+            $table->string('date')->nullable();   
+            $table->string('time')->nullable();  
+            $table->string('price')->nullable();  
+            $table->string('available_seats')->nullable();             
+            $table->string('available_vip_seats')->nullable(); 
+            $table->string('available_couple_seats')->nullable(); 
+            $table->string('available_super_vip_seats')->nullable();    
+            $table->timestamps();
+        });
+
+
     }
 
     /**
