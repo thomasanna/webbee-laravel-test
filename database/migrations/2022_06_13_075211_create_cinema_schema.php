@@ -67,7 +67,10 @@ class CreateCinemaSchema extends Migration
             $table->foreign('movie_id')->references('id')->on('movie')->cascadeOnDelete();
             $table->string('date')->nullable();   
             $table->string('time')->nullable();  
-            $table->string('price')->nullable();  
+            $table->string('normal_price')->nullable();  
+            $table->string('vip_seat_price')->nullable();
+            $table->string('couple_seat_price')->nullable();
+            $table->string('super_vip_price')->nullable();
             $table->string('available_seats')->nullable();             
             $table->string('available_vip_seats')->nullable(); 
             $table->string('available_couple_seats')->nullable(); 
